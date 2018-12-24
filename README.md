@@ -1,0 +1,2 @@
+# jurnni
+manage trips effectively
