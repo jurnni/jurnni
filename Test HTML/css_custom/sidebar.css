@@ -1,0 +1,78 @@
+* {
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+}
+
+/* Side bar menu */
+.mainS1 {
+	height: 120px; /* Full height of the view port */
+	width: 100%; /* Width of about 20 pixels */
+	margin: 0px;
+	/* position: relative; /* Fixed position, cannot move relative */
+	/* z-index:1; /* Is in top of all the divs */
+	/* top: 100; /* 100 pixels from the top */
+	/* left: 0; /* Extreme left */
+	background-color: #72aae1; /* a darkish blue */
+	overflow-x: hidden; /* disable horizontal scroll */
+}
+
+.mainS1-color {
+	width: 100%;
+	margin-bottom: 0px;
+	background-color: #72aae1; /* a darkish blue */
+	overflow-x: hidden; /* disable horizontal scroll */
+}
+
+.mainS1-logo {
+	height: 70px;
+	max-width: 150px;
+	background-color: #72bbe1; /* a darkish blue */
+}
+
+.mainS1-carousel {
+	height: 70px;
+	background-color: #ffbbe1; /* a darkish blue */
+}
+
+.sidebar-color {
+	position: relative;
+	height: 100%;
+	max-width: 150px;
+	background-color: #72bbe1; /* a darkish blue */
+}
+
+.mainspace-color {
+	height: 70px;
+	background-color: #ffffff; /* a darkish blue */
+}
+
+
+/* Side bar menu */
+.sidebar {
+	height: 100%; /* Full height of the view port */
+	width: 80px; /* Width of about 20 pixels */
+	position: fixed; /* Fixed position, cannot move relative */
+	z-index:1; /* Is in top of all the divs */
+	top: 100; /* 100 pixels from the top */
+	left: 0; /* Extreme left */
+	background-color: #72aae1; /* a darkish blue */
+	overflow-x: hidden; /* disable horizontal scroll */
+}
+
+/* Experimental code: Comment, do not delete ;*/
+.bluediv {
+	height: 200px;
+	position: static;
+	z-index: 1;
+    background-color: blue;
+}
+
+.yellowdiv {
+	height: 80%;
+	width: 50px;
+	position: absolute;
+	top:10px;
+	left:10px;
+	background-color: yellow;
+}

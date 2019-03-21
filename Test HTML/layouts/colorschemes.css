@@ -1,0 +1,42 @@
+body, html {
+  height: 100%;
+  min-height: 100%;
+}
+
+.fullheight {
+	height:100%;
+}
+.h-15 {
+	height: 15%;
+}
+
+
+.cs1_dominant { background-color: #559999; color: white;}
+.cs1_accent1  { background-color: #55aaaa; color: white;}
+.cs1_accent2  { background-color: #55bbbb; }
+.cs1_bg       { background-color: #aacccc; }
+/*
+.cs1_dominant { background-color: #2988bc; color: white;}
+.cs1_accent1  { background-color: #2f496e; color: white;}
+.cs1_accent2  { background-color: #f4eade; }
+.cs1_bg       { background-color: #ed8c72; }
+*/
+.cs2_dominant { background-color: #46211a; color: white;}
+.cs2_accent1  { background-color: #693d3d; color: white;}
+.cs2_accent2  { background-color: #ba5536; }
+.cs2_bg       { background-color: #a43820; }
+
+.cs3_dominant { background-color: #003b46; color: white;}
+.cs3_accent1  { background-color: #07575b; color: white;}
+.cs3_accent2  { background-color: #66a5ad; }
+.cs3_bg       { background-color: #c4dfe6; }
+
+.cs4_dominant { background-color: #1e1f26; color: white;}
+.cs4_accent1  { background-color: #283655; color: white;}
+.cs4_accent2  { background-color: #4d648D; }
+.cs4_bg       { background-color: #D0e1f9; }
+
+.cs5_dominant { background-color: #662225; color: white;}
+.cs5_accent1  { background-color: #b51d0a; color: white;}
+.cs5_accent2  { background-color: #ead39c; }
+.cs5_bg       { background-color: #7d5e3c; }
