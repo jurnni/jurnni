@@ -1,0 +1,25 @@
+body, html {
+  height: 100%;
+  min-height: 100%;
+}
+
+.color-blue {
+	background-color: #72bbe1; 
+}
+
+.color-green {
+	background-color: #33ff44; 
+}
+
+.color-red {
+	background-color: #ff7755; 
+}
+
+.color-yellow {
+	background-color: #ff3344; 
+}
+
+.my-sidebar {
+    -ms-flex: 0 0 100px;
+    flex: 0 0 100px 
+} 
