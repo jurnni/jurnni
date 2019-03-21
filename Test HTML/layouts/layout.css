@@ -1,6 +1,32 @@
 body, html {
   height: 100%;
   min-height: 100%;
+  margin: 0px;
+  overflow: hidden;
+}
+.container-height {
+	height: 100%;
+}
+.title-height {
+	height: 130px;
+	min-height: 130px;
+	max-height: 130px;
+}
+.flex-row {
+	flex: 1;
+	flex-grow: 1;
+}
+.flex-col {
+	flex: 1;
+	flex-grow: 1;
+}
+.content-area {
+	height: 100%;
+}
+
+.sidebar {
+    -ms-flex: 0 0 120px;
+    flex: 0 0 120px;
 }
 
 .color-blue {
@@ -16,10 +42,10 @@ body, html {
 }
 
 .color-yellow {
-	background-color: #ff3344; 
+	background-color: #ffff00; 
 }
 
-.my-sidebar {
-    -ms-flex: 0 0 100px;
-    flex: 0 0 100px 
-} 
+.color-white {
+	background-color: #ffffff; 
+}
+
