@@ -7,6 +7,15 @@ body, html {
 .container-height {
 	height: 100%;
 }
+.navdiv {
+	height: 100%;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+.full-height {
+	height: 100%;
+}
 .title-height {
 	height: 130px;
 	min-height: 130px;
@@ -24,9 +33,14 @@ body, html {
 	height: 100%;
 }
 
-.sidebar {
-    -ms-flex: 0 0 120px;
-    flex: 0 0 120px;
+.sidebar-left {
+    -ms-flex: 0 0 100px;
+    flex: 0 0 100px;
+}
+
+.sidebar-right {
+    -ms-flex: 0 0 80px;
+    flex: 0 0 80px;
 }
 
 .color-blue {
