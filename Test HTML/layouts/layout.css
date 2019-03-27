@@ -1,3 +1,10 @@
+/* Define variables here */
+:root {
+	--main-color: #227799; 
+	--onhover-color: #005577;
+	--background-color: #ffffff;
+}
+
 body, html {
   height: 100%;
   min-height: 100%;
@@ -5,16 +12,41 @@ body, html {
   overflow: hidden;
 }
 
-.image-menu-item {
-	height: 100%;
-	width: 100%;
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
 }
+.fullheight {
+	height: inherit;
+}
+
+.nopadding {
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.nomargin {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.image-menu-item {
+	height: inherit;
+	width: inherit;
+	filter: invert(100%);
+}
+
 .top-container {
 	height: 100%;
 	padding-left : 0px;
 	padding-right: 0px;
 }
-
 
 .navdiv {
 	height: 100%;
@@ -27,45 +59,70 @@ body, html {
 .menudiv {
 	min-width: 100%;
 	min-height: 32px;
-	padding-left: 15px;
-	padding-right: 20px;
-	background-color: #ffffff;
-	border: 1px;
-	border-color: black;
-	border-size: 2px;
+	height: 32px;
+	padding-left: 0px;
+	padding-right: 0px;
+	background-color: var(--main-color);
 }
+
 .menu {
+  height: 100%;
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
 }
 
 .menuitem {
   display: inline;
+  height: 100%;
   float: left;
+  padding-left: 10px;
+  padding-right: 10px;
 }
+
+.menuitem:hover {
+  background-color: var(--onhover-color);
+}
+
 .menuitem-float-right{
-  display: inline;
+  display: block;
   float: right;
 }
+
 .menulink {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100%;
   text-decoration: none;
-  padding: 8px;
   color: white;
   text-align: center;
 }
+
 .menulink:hover {
   text-decoration: none;
   color: white;
-  background-color: #005577;
+  background-color: var(--onhover-color);
+}
+
+.horizontal-spacer-div {
+	min-height: 100%;
+	min-width: 32px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
 }
 
 .vertical-spacer-div {
 	min-width: 100%;
-	min-height: 32px;
+	min-height: calc((100% / 5) -  160px);
 	padding: 0px;
 	margin: 0px;
 	border: 0px;
+	flex: 0 1 auto;
+	background-color: var(--main-color);
 }
 
 .full-height {
@@ -89,9 +146,10 @@ body, html {
 }
 
 .sidebar-left {
-	max-width: 115px;
-	min-width: 115px;
-	padding-left: 15px;
+	max-width: 100px;
+	width: 3%;
+	min-width: 50px;
+	padding-left: 0px;
 	padding-right: 0px;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
@@ -103,7 +161,7 @@ body, html {
 }
 
 .color-blue {
-	background-color: #227799; 
+	background-color: var(--main-color); 
 }
 
 .color-green {
@@ -127,24 +185,42 @@ body, html {
 }
 
 .image-container {
-	min-width: 64px;
-	min-height: 64px;
-	max-height: 64px;
-	max-height: 64px;
-	padding-left: 5px;
-	padding-right: 5px;
-	padding-top: 5px;
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
 	padding-bottom: 0px;
 	margin-top: 0px;
 	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	border: 0px;
 }
 .image-container:hover {
-	background-color: #005577;
+	background-color: var(--onhover-color);
+}
+.text-menu-item-container {
+	display: block;
+	float: right;
+	margin-left:0px;
+	margin-right: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	text-align: center;
+	height:100%;
+}
+.text-menu-item-container:hover {
+	background-color: var(--onhover-color);
+}
+.nav-link {
+	width: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: center;
 }
 
-.nav-link {
-	flex: flex;
-	display: block;
-	padding-top: 0px;
-	padding-bottom: 0px;
+.nav-link:hover {
+	background-color: var(--onhover-color);
 }
