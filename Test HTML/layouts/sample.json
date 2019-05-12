@@ -1,0 +1,166 @@
+{
+	"ItineraryName" : "Los Angeles Trip 3 days",
+	"ItineraryDetails" : 
+	{
+		"NumDays": "4",
+		"DayDetails": [
+			{
+				"Date": "9/21/2018",
+				"DayOfTheWeek": "Saturday",
+				"BeginTime": "10:00 AM",
+				"NumberOfActivities": "20",
+				"Activities" : [ 
+					{
+						"ActivityType" : "Eat",
+						"ActivityBeginTime" : "800",
+						"ActvityEndTime" : "900",
+						"ActivityDetails" : 
+						{
+							"EateryName" : "Noah's Bagels"
+							"EateryLocation" : 
+						}
+					},
+					{
+						"ActivityType" : "Commute",
+						"ActivityBeginTime" : "900",
+						"ActvityEndTime" : "930",
+						"ActivityDetails" :
+						{
+							"CommuteMedium" : "Private Car",
+							"ApproximateCommuteTime" : "15 mins",
+							"ApproximateCommuteCost" : "3.5$",
+						}
+					},
+					{
+						"ActivityType" : "Do",
+						"ActivityBeginTime" : "930",
+						"ActvityEndTime" : "1045",
+						"ActivityDetails" :
+						{	
+							"CommuteMedium" : "Private Car",
+							"ApproximateCommuteTime" : "15 mins",
+							"ApproximateCommuteCost" : "3.5$",
+						}
+					},	
+				]
+			},
+			{
+				"Date": "9/22/2018",
+				"DayOfTheWeek": "Sunday",
+				"BeginTime": "10:00 AM",
+				"NumberOfActivities": "20",
+				"Activities" : [ 
+					{
+						"ActivityType" : "Eat",
+						"ActivityBeginTime" : "800",
+						"ActvityEndTime" : "900",
+						"ActivityDetails" : 
+						{
+							"EateryName" : "Noah's Bagels"
+							"EateryLocation" : 
+						}
+					},
+					{
+						"ActivityType" : "Commute",
+						"ActivityBeginTime" : "900",
+						"ActvityEndTime" : "930",
+						"ActivityDetails" :
+						{
+							"CommuteMedium" : "Private Car",
+							"ApproximateCommuteTime" : "15 mins",
+							"ApproximateCommuteCost" : "3.5$",
+						}
+					},
+					{
+						"ActivityType" : "Do",
+						"ActivityBeginTime" : "930",
+						"ActvityEndTime" : "1045",
+						"ActivityDetails" :
+						{	
+							"CommuteMedium" : "Private Car",
+							"ApproximateCommuteTime" : "15 mins",
+							"ApproximateCommuteCost" : "3.5$",
+						}
+					},	
+				]
+			},
+			{
+				"Date": "9/23/2018",
+				"DayOfTheWeek": "Monday",
+				"BeginTime": "10:00 AM",
+				"NumberOfActivities": "20",
+				"Activities" : [ 
+					{
+						"ActivityType" : "Eat",
+						"ActivityBeginTime" : "800",
+						"ActvityEndTime" : "900",
+						"ActivityDetails" : 
+						{
+							"EateryName" : "Noah's Bagels"
+							"EateryLocation" : 
+						}
+					},
+					{
+						"ActivityType" : "Commute",
+						"ActivityBeginTime" : "900",
+						"ActvityEndTime" : "930",
+						"ActivityDetails" :
+						{
+							"CommuteMedium" : "Private Car",
+							"ApproximateCommuteTime" : "15 mins",
+							"ApproximateCommuteCost" : "3.5$",
+						}
+					},
+					{
+						"ActivityType" : "Do",
+						"ActivityBeginTime" : "930",
+						"ActvityEndTime" : "1045",
+						"ActivityDetails" :
+						{	
+							"CommuteMedium" : "Private Car",
+							"ApproximateCommuteTime" : "15 mins",
+							"ApproximateCommuteCost" : "3.5$",
+						}
+					},	
+				]
+			},
+			{
+				"Date": "9/24/2018",
+				"DayOfTheWeek": "Tuesday",
+				"BeginTime": "10:00 AM",
+				"NumberOfActivities": "20",
+				"Activities" : [ 
+					{
+						"ActivityType" : "Eat",
+						"ActivityBeginTime" : "800",
+						"ActvityEndTime" : "900",
+						"ActivityDetails" : 
+						{
+							"EateryName" : "Noah's Bagels"
+							"EateryLocation" : 
+						}
+					},
+					{
+						"ActivityType" : "Commute",
+						"ActivityBeginTime" : "900",
+						"ActvityEndTime" : "930",
+						"ActivityDetails" :
+						{
+							"CommuteMedium" : "Private Car",
+							"ApproximateCommuteTime" : "15 mins",
+							"ApproximateCommuteCost" : "3.5$",
+						}
+					},
+					{
+						"ActivityType" : "Do",
+						"ActivityBeginTime" : "930",
+						"ActvityEndTime" : "1045",
+						"ActivityDetails" :
+						{	
+							"CommuteMedium" : "Private Car",
+							"ApproximateCommuteTime" : "15 mins",
+							"ApproximateCommuteCost" : "3.5$",
+						}
+					},	
+				]
+			}

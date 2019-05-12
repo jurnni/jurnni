@@ -1,0 +1,46 @@
+/* Define variables here */
+:root {
+	--main-color: #227799; 
+	--onhover-color: #005577;
+	--background-color: #ffffff;
+}
+
+body, html {
+  height: 100%;
+  min-height: 100%;
+  margin: 0px;
+  overflow: hidden;
+}
+
+.fullheight {
+	height:100%;
+}
+.fullwidth {
+	width:100%;
+}
+.vertical-scroll {
+	overflow-y: scroll;
+}
+.zeropadding {
+	padding-bottom: 0px;
+	padding-right: 10px;
+	padding-left: 25px;
+	padding-top: 10px;
+}
+.zeromargin {
+}
+.color-blue {
+	background-color: var(--main-color); 
+}
+
+.color-green {
+	background-color: #aabbcc; 
+}
+.color-gray {
+	background-color: #dddddd; 
+}
+
+
+.min-button-width {
+	min-width: 200px;
+}

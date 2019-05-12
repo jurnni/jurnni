@@ -42,6 +42,13 @@ body, html {
 	filter: invert(100%);
 }
 
+.image-logo-item {
+	height: 100%;
+	width: 100%;
+	filter: invert(100%);
+	object-fit: fill;
+}
+
 .top-container {
 	height: 100%;
 	padding-left : 0px;
@@ -129,8 +136,8 @@ body, html {
 	height: 100%;
 }
 .title-height {
-	height: 180px;
-	min-height: 180px;
+	height: 10%;
+	min-height: 150px;
 	max-height: 180px;
 }
 .flex-row {
@@ -198,6 +205,26 @@ body, html {
 	margin-right: 0px;
 	border: 0px;
 }
+
+.logo-container {
+	min-width: 85px;
+	min-height: 75px;
+	max-width: 85px;
+	max-height: 100%;
+	display: inline-block;
+	height: 135px;
+	width: 115px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 20px;
+	padding-bottom: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	border: 0px;
+}
+
 .image-container:hover {
 	background-color: var(--onhover-color);
 }
