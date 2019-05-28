@@ -45,5 +45,21 @@ function jnRendererDef(jnItObj)
 //-----------------------------------------------------------------------------
 function jnRenderItinerary(jnItObj)
 {
+	// Get the number of days
+	var numDays = jnItObj.getNumDays();
 	
+	// Iterate over each days and get the actvities
+	for (var i = 0; i < numDays; i=i+1) 
+	{
+		var dayObj = jnItObj.getDay(i);
+		var numAct = dayObj.getNumActivities();
+		
+		for (var j = 0; j < numAct; j=j+1)
+		{
+			var actObj = jnItObj.getActivityForDay(i, j);
+		}
+	}
+	// Generate blocks for each activity
+	
+	// 
 }

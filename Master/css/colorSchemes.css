@@ -1,0 +1,10 @@
+:root {
+	/* Color definitions */
+	--activity-none-color: rgb(100,100,100);
+	--activity-none-color-hover: rgb(200,200,200);
+	--activity-do-color: rgb(0,100,0);
+	--activity-do-color-hover: rgb(0,200,0);
+	--activity-move-color: rgb(150, 100, 0);
+	--activity-move-color: rgb(250, 200, 0);
+	--main-bg-color: coral;
+}

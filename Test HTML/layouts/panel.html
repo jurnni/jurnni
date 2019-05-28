@@ -8,53 +8,58 @@
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
 	<!-- CMNT Custom style sheet section BEGIN -->
 	<link href="./panel.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 	<!-- CMNT Custom style sheet section END -->
 	<!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	  <script>
+		$ ( document ).ready( function() { $(".activity-size").resizable({handles: 's'}); });
+	  </script>
 </head>
 
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+
 <div class="container-fluid fill-height">
 	<h1> Hello </h1>
 	<div class="container fill-height">
-	
-	
 	<div class="activity-size">
-		<a href="#" class="activity-link">
-			<div class="activity activity-type-do">
-				Hello
+		<a href="#" class="activity-link"> 
+			<div id="activityResizable1" class="activity activity-type-do">
+				Do
 			</div>
+			<div class="activity-resize-handle"></div>
 		</a>
 	</div>
 
-<!--
+
 	<div class="activity-size">
 		<a href="#" class="activity-link">
 			<div class="activity activity-type-eat">
-				Hello
+				Eat
 			</div>
 		</a>
 	</div>
 	<div class="activity-size">
 		<a href="#" class="activity-link">
 			<div class="activity activity-type-commute">
-				Hello
+				Move
 			</div>
 		</a>
 	</div>
 	<div class="activity-size">
 		<a href="#" class="activity-link">
 			<div class="activity activity-type-rest">
-				Hello
+				Rest
 			</div>
 		</a>
 	</div>	
 	
--->
+
 	</div>
 
  </div>
