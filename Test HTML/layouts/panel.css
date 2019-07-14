@@ -79,6 +79,7 @@ body, html {
   border-right-width: 0px; 
   border-bottom-width: 0px;
   border-radius: 0px;
+  overflow: hidden;
 }
 
 .activity {

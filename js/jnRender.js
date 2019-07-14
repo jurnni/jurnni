@@ -24,6 +24,23 @@
 //
 //
 
+//-----------------------------------------------------------------------------
+// AUTHOR: nakul
+// DATE  : 6/11/2019 
+// BRIEF : Top level function to generate scripts that are associated with
+//         the objects that are rendered
+//-----------------------------------------------------------------------------
+function jnRenderCreateScr(jnItObj, renderHTML)
+{
+	var openDayFunc = "function openDay(evt, dayNum)\n" +
+					  "{\n" + 
+	                  "$('div[id ^= \"jnDay\"]').css(\"display\", \"none\");\n" +
+					  "$(\".daybutton\").removeClass(\"daybuttonactive\");\n" +	
+					  "$(\"#\" + dayNum).show();\n" +
+					  "$(evt.currentTarget).addClass(\"daybuttonactive\");\n" +
+					  "}\n";
+	renderHTML.scriptStr = renderHTML.scriptStr + openDayFunc + "\n";
+}
 
 //-----------------------------------------------------------------------------
 // AUTHOR: nakul
@@ -37,25 +54,25 @@ function jnRenderActivity(jnActivityObj, dayHTML, activityNum)
 	var activityBaseClass = "activity";
 	var activityType = jnActivityObj.getType();
 	
-	var activityHTML = "<div class =\"" + activitySizeClass + ">\n";
-	activityHTML = activityHTML + "   <a href=\"#\" class=\"" + activityLinkClass + ">\n";
+	var activityHTML = "<div class =\"" + activitySizeClass + "\">\n";
+	activityHTML = activityHTML + "\t<a href=\"#\" class=\"" + activityLinkClass + "\">\n";
 	if (activityType == "Move") {
-		activityHTML = activityHTML + "     <div id=\"nonresizableActivity\"";
+		activityHTML = activityHTML + "\t\t<div id=\"nonresizableActivity\"";
 	} else {
-		activityHTML = activityHTML + "     <div id=\"resizableActivity\"";
+		activityHTML = activityHTML + "\t\t<div id=\"resizableActivity\"";
 	}
 	
 	activityHTML = activityHTML + "  class=\"" + activityBaseClass + " ";
-	activityHTML = activityHTML + activityBaseClass + "-type-" + activityType + "\">\n";
+	activityHTML = activityHTML + activityBaseClass + "-type-" + activityType.toLowerCase() + "\">\n";
 	activityHTML = activityHTML + "\n";
-	activityHTML = activityHTML + "<p>Begin :" + jnActivityObj.getBeginTime() + "</p>\n";
-	activityHTML = activityHTML + "<p>End :" + jnActivityObj.getEndTime() + "</p>\n";
-	activityHTML = activityHTML + "<p>Activity Num:" + activityNum + "</p>\n";
-	activityHTML = activityHTML + "     </div>\n";
-	activityHTML = activityHTML + "  </a>\n";
+	activityHTML = activityHTML + "\t\t\tBegin :" + jnActivityObj.getBeginTime() + "<br>\n";
+	activityHTML = activityHTML + "\t\t\tEnd :" + jnActivityObj.getEndTime() + "<br>\n";
+	activityHTML = activityHTML + "\t\t\tActivity Num:" + activityNum + "<br>\n";
+	activityHTML = activityHTML + "\t\t</div>\n";
+	activityHTML = activityHTML + "\t</a>\n";
 	activityHTML = activityHTML + "</div>\n";
 	
-	dayHTML.htmlStr = dayHtml.htmlStr + activityHTML;
+	dayHTML.htmlStr = dayHTML.htmlStr + activityHTML;
 }
 
 //-----------------------------------------------------------------------------
@@ -75,8 +92,10 @@ function jnRenderGetDayAsHTML(jnDayObj, dayNum)
 	var dayNumActivities = jnDayObj.getNumActivities();
 	
 	// Setup the day div
-	var dayHTMLStr = "<div id=\"jnDay" + dayNum.toString() + "\"";
-	var dayHTMLStr = " class=\"" + dayClass + "\">\n"; 
+	dayHTML.htmlStr = "<div id=\"jnDay" + dayNum.toString() + "\" class = \"dayDiv\"";
+	dayHTML.htmlStr = dayHTML.htmlStr + " class=\"tabcontent\">\n";
+	dayHTML.htmlStr = dayHTML.htmlStr + " <h4> Day: " + dayNum.toString() + "</h4>";
+	
 	for (var i = 0; i < dayNumActivities; i = i + 1) 
 	{
 		var jnActivityObj = jnDayObj.getActivity(i);
@@ -85,9 +104,7 @@ function jnRenderGetDayAsHTML(jnDayObj, dayNum)
 		// in dayHTML
 		jnRenderActivity(jnActivityObj, dayHTML, i);
 	}
-	var dayHTMLStr = "</div>\n";
-	
-	dayHTML.htmlStr = dayHTML.htmlStr + dayHTMLStr;
+	dayHTML.htmlStr = dayHTML.htmlStr + "</div>\n";
 	
 	return dayHTML;
 }
@@ -102,11 +119,11 @@ function jnRenderGetItineraryDetailsAsHTML(jnItObj, renderHTML)
 	var itName = jnItObj.getName();
 	var itNumDays = jnItObj.getNumDays();
 	
-	renderHTML.str = renderHTML.str + "\n";
-	renderHTML.str = renderHTML.str + "<h3> Itinerary Name: " + itName + "</h3>";
-	renderHTML.str = renderHTML.str + "<br>\n" + "<h4> Number of Days: ";
-	renderHTML.str = renderHTML.str + Integer(itNumDays).toString() + "</h4>";
-	renderHTML.str = renderHTML.str + "\n<br>";
+	renderHTML.htmlStr = renderHTML.htmlStr + "\n";
+	renderHTML.htmlStr = renderHTML.htmlStr + "<h3> Itinerary Name: " + itName + "</h3>";
+	renderHTML.htmlStr = renderHTML.htmlStr + "<br>\n" + "<h4> Number of Days: ";
+	renderHTML.htmlStr = renderHTML.htmlStr + itNumDays.toString() + "</h4>";
+	renderHTML.htmlStr = renderHTML.htmlStr + "\n<br>";
 }
 
 //-----------------------------------------------------------------------------
@@ -119,7 +136,7 @@ function jnRenderInitHTML(jnItObj, renderHTML)
 	var itName = jnItObj.getName();
 	var itineraryClass = "itinerary";
 	
-	renderHTML.str = "<div id = \"" + itName + "\" class = \"" + itineraryClass + "\">\n";
+	renderHTML.htmlStr = renderHTML.htmlStr + "<div id = \"" + itName + "\" class = \"" + itineraryClass + "\">\n";
 }
 
 //-----------------------------------------------------------------------------
@@ -130,7 +147,40 @@ function jnRenderInitHTML(jnItObj, renderHTML)
 //-----------------------------------------------------------------------------
 function jnRenderEndHTML(jnItObj, renderHTML)
 {
-	renderHTML.str = "</div>\n";
+	renderHTML.htmlStr = renderHTML.htmlStr + "</div>\n";
+}
+
+//-----------------------------------------------------------------------------
+// AUTHOR: nakul
+// DATE  : 6/11/2019 
+// BRIEF : 
+//       
+//-----------------------------------------------------------------------------
+function jnRenderDayTabs(jnItObj, renderHTML)
+{
+	// Check panel HTML
+	var panelHTML = "";
+	
+	// Generate the panel
+	panelHTML = "<div class=\"tab\">\n";
+	
+	// Get the number of days
+	var numDays = jnItObj.getNumDays();
+	
+	// Iterate over each day and generate a name for each
+	for (var i = 0; i < numDays; i = i + 1)
+	{
+		var dayNum = i + 1;
+		panelHTML = panelHTML + "\t<button class = \"daybutton\"";
+		panelHTML = panelHTML + " onclick=\"openDay(event, 'jnDay" + dayNum.toString();
+		panelHTML = panelHTML + "')\"> Day " + dayNum.toString() + "</button>\n";
+	}
+	
+	// Generate the panel
+	panelHTML = panelHTML + "</div>\n";
+	
+	// Append to renderHTML
+	renderHTML.htmlStr = renderHTML.htmlStr + panelHTML;
 }
 
 //-----------------------------------------------------------------------------
@@ -152,13 +202,16 @@ function jnRenderItinerary(jnItObj)
 	// Get the number of days
 	var numDays = jnItObj.getNumDays();
 	
+	// Generate the tabbed days with buttons
+	jnRenderDayTabs(jnItObj, renderHTML);
+	
 	// Iterate over each days and get the actvities
-	for (var i = 0; i < numDays; i=i+1) 
+	for (var i = 0; i < numDays; i = i + 1) 
 	{
 		var dayObj = jnItObj.getDay(i);
 		
 		// Get the rendering of the day HTML
-		var dayHTML = jnRenderGetDayAsHTML(dayObj);
+		var dayHTML = jnRenderGetDayAsHTML(dayObj, i + 1);
 		
 		// Merge the dayHTML with the renderHTML
 		renderHTML.htmlStr = renderHTML.htmlStr + dayHTML.htmlStr;
@@ -166,4 +219,9 @@ function jnRenderItinerary(jnItObj)
 
 	// Terminate the rendered Itinerary HTML
 	jnRenderEndHTML(jnItObj, renderHTML);
+	
+	// Install the renderer JS code in the scripts
+	jnRenderCreateScr(jnItObj, renderHTML);
+	
+	return renderHTML;
 }

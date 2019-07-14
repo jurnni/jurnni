@@ -10,12 +10,12 @@ var testItinerary =
 				"Date": "9/21/2018",
 				"DayOfTheWeek": "Saturday",
 				"BeginTime": "10:00 AM",
-				"NumberOfActivities": "20",
+				"NumberOfActivities": "3",
 				"Activities" : [ 
 					{
 						"ActivityType" : "Eat",
 						"ActivityBeginTime" : "800",
-						"ActvityEndTime" : "900",
+						"ActivityEndTime" : "900",
 						"ActivityDetails" : 
 						{
 							"EateryName" : "Noah's Bagels",
@@ -25,7 +25,7 @@ var testItinerary =
 					{
 						"ActivityType" : "Commute",
 						"ActivityBeginTime" : "900",
-						"ActvityEndTime" : "930",
+						"ActivityEndTime" : "930",
 						"ActivityDetails" :
 						{
 							"CommuteMedium" : "Private Car",
@@ -36,7 +36,7 @@ var testItinerary =
 					{
 						"ActivityType" : "Do",
 						"ActivityBeginTime" : "930",
-						"ActvityEndTime" : "1045",
+						"ActivityEndTime" : "1045",
 						"ActivityDetails" :
 						{	
 							"CommuteMedium" : "Private Car",
@@ -50,12 +50,12 @@ var testItinerary =
 				"Date": "9/22/2018",
 				"DayOfTheWeek": "Sunday",
 				"BeginTime": "10:00 AM",
-				"NumberOfActivities": "20",
+				"NumberOfActivities": "3",
 				"Activities" : [ 
 					{
 						"ActivityType" : "Eat",
 						"ActivityBeginTime" : "800",
-						"ActvityEndTime" : "900",
+						"ActivityEndTime" : "900",
 						"ActivityDetails" : 
 						{
 							"EateryName" : "Noah's Bagels",
@@ -65,7 +65,7 @@ var testItinerary =
 					{
 						"ActivityType" : "Commute",
 						"ActivityBeginTime" : "900",
-						"ActvityEndTime" : "930",
+						"ActivityEndTime" : "930",
 						"ActivityDetails" :
 						{
 							"CommuteMedium" : "Private Car",
@@ -76,7 +76,7 @@ var testItinerary =
 					{
 						"ActivityType" : "Do",
 						"ActivityBeginTime" : "930",
-						"ActvityEndTime" : "1045",
+						"ActivityEndTime" : "1045",
 						"ActivityDetails" :
 						{	
 							"CommuteMedium" : "Private Car",
@@ -90,12 +90,12 @@ var testItinerary =
 				"Date": "9/23/2018",
 				"DayOfTheWeek": "Monday",
 				"BeginTime": "10:00 AM",
-				"NumberOfActivities": "20",
+				"NumberOfActivities": "3",
 				"Activities" : [ 
 					{
 						"ActivityType" : "Eat",
 						"ActivityBeginTime" : "800",
-						"ActvityEndTime" : "900",
+						"ActivityEndTime" : "900",
 						"ActivityDetails" : 
 						{
 							"EateryName" : "Noah's Bagels",
@@ -105,7 +105,7 @@ var testItinerary =
 					{
 						"ActivityType" : "Commute",
 						"ActivityBeginTime" : "900",
-						"ActvityEndTime" : "930",
+						"ActivityEndTime" : "930",
 						"ActivityDetails" :
 						{
 							"CommuteMedium" : "Private Car",
@@ -116,7 +116,7 @@ var testItinerary =
 					{
 						"ActivityType" : "Do",
 						"ActivityBeginTime" : "930",
-						"ActvityEndTime" : "1045",
+						"ActivityEndTime" : "1045",
 						"ActivityDetails" :
 						{	
 							"CommuteMedium" : "Private Car",
@@ -130,12 +130,12 @@ var testItinerary =
 				"Date": "9/24/2018",
 				"DayOfTheWeek": "Tuesday",
 				"BeginTime": "10:00 AM",
-				"NumberOfActivities": "20",
+				"NumberOfActivities": "3",
 				"Activities" : [ 
 					{
 						"ActivityType" : "Eat",
 						"ActivityBeginTime" : "800",
-						"ActvityEndTime" : "900",
+						"ActivityEndTime" : "900",
 						"ActivityDetails" : 
 						{
 							"EateryName" : "Noah's Bagels",
@@ -145,7 +145,7 @@ var testItinerary =
 					{
 						"ActivityType" : "Commute",
 						"ActivityBeginTime" : "900",
-						"ActvityEndTime" : "930",
+						"ActivityEndTime" : "930",
 						"ActivityDetails" :
 						{
 							"CommuteMedium" : "Private Car",
@@ -156,7 +156,7 @@ var testItinerary =
 					{
 						"ActivityType" : "Do",
 						"ActivityBeginTime" : "930",
-						"ActvityEndTime" : "1045",
+						"ActivityEndTime" : "1045",
 						"ActivityDetails" :
 						{	
 							"CommuteMedium" : "Private Car",
@@ -186,9 +186,9 @@ function loadJsonInTextArea()
 	// var obj = JSON.parse(testItinerary);
     var pretty = JSON.stringify(testItinerary, undefined, 4);
 	document.getElementById("jsonTextArea").innerHTML = pretty;
-	generateItineraryObj();
+	//generateItineraryObj();
 	
-	testCreateObject();
+	//testCreateObject();
 
 }
 
@@ -259,3 +259,33 @@ function parseArray(key, obj)
 		parseObj("", obj[i]);
 	}
 }
+
+
+$(document).ready(function() {
+	loadJsonInTextArea();
+	
+	try {
+		console.log(JSON.parse(document.getElementById("jsonTextArea").value));
+	} catch (objError) {
+		if (objError instanceof SyntaxError) {
+			alert(objError.name);
+		} else {
+			alert(objError.message);
+		}
+	}
+	var itJSONObj = JSON.parse(document.getElementById("jsonTextArea").value);
+	
+	/* Parse with jnParser */
+	var itObj = jnParseItineraryObj(itJSONObj);
+	
+	/* Render the object */
+	var renderHTML = jnRenderItinerary(itObj);
+	document.getElementById("renderDiv").innerHTML = renderHTML.htmlStr;
+	
+	// Append the script to the current document's script object
+	var renderScript = "\t<script>\n" + "\t\t" + renderHTML.scriptStr + "\n\t</script>\n";
+	$("head").append(renderScript);
+	
+	// Call the created API to initialize
+	//initRender();
+});

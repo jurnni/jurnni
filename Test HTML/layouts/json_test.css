@@ -5,6 +5,9 @@
 	--background-color: #ffffff;
 }
 
+:focus {
+    outline: none !important;
+}
 body, html {
   height: 100%;
   min-height: 100%;
@@ -27,6 +30,11 @@ body, html {
 	padding-left: 25px;
 	padding-top: 10px;
 }
+
+.renderDiv {
+	background-color: #eeeeee;
+}
+
 .zeromargin {
 }
 .color-blue {
@@ -43,4 +51,46 @@ body, html {
 
 .min-button-width {
 	min-width: 200px;
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+
+/* Change background color of buttons on hover */
+.daybutton {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.1s;
+}
+
+.daybutton:hover {
+  background-color: #ddd;
+}
+
+.dayDiv {
+	background-color: #ffffff;
+	display: none;
+}
+
+/* Create an active/current tablink class */
+.daybuttonactive {
+  border: none;
+  background-color: #ddd;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
 }

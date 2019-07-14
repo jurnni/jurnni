@@ -1,11 +1,5 @@
-// MODULE: jnParser                                                                                                                                                                   
+// MODULE: jnParse                                                                                                                                                               
 // BRIEF: Implementation of the parser and hosted methods
-
-// UTIL functions
-function clearArray(thisArray) 
-{
-    thisArray.splice(0, thisArray.length);
-};
 
 // CONSTANT VARS FOR PARSING
 const _ITINERARY_DETAILS_KEY = "ItineraryDetails";
@@ -14,35 +8,38 @@ const _ACTIVITY_DETAILS_KEY = "ActivityDetails";
 const _ACTIVITY_ARRAY_KEY = "Activities";
 
 // CREATE CLASSES/CONSTRUCTORS FOR OBJECTS WE NEED TO CREATE
-// Container for the itinerary objects for a given user name
-function jnItinerariesForUsernameObj(username)
-{
-	this._username = username;
-	this._itineraries = new Array();
+//******************************************************************************
+// Global to store the number of itineraries that have been parsed and processed
+//******************************************************************************
+var numParsedItineraries = 0;
+function isEmpty(value){
+  return (value == null || value === '');
 }
 
+//******************************************************************************
 // The itinerary object
+//******************************************************************************
 function jnItineraryObj(id)
 {
 	this._id = id;
 	
 	// Get the name of the itinerary
-	var getName = function() {
+	this.getName = function() {
 		var name = "";
 		if (!isEmpty(this._name)) {
 			name = this._name;
 		}
-		return _name;
+		return name;
 	}
 	
 	// Get the number of days of the itinerary
-	var getNumDays = function() {
+	this.getNumDays = function() {
 		return this._numDays;
 	}
 	
 	// Get the day corresponding to dayNum from the itinerary 
 	// object's _days array
-	var getDay = function(dayNum) {
+	this.getDay = function(dayNum) {
 		var dayObj = {};
 		if (!isEmpty(this._days)) {
 			if (this._days.length > dayNum) {
@@ -53,17 +50,19 @@ function jnItineraryObj(id)
 	}
 }
 
+//******************************************************************************
 // The day object
+//******************************************************************************
 function jnDayObj(id) {
 	this._id = id;
 	
 	// Get the ID of the day object
-	var getId = function() {
+	this.getId = function() {
 		return this._id;
 	}
 	
 	// Get the date of the day object
-	var getDate = function() {
+	this.getDate = function() {
 		var date = {};
 		if (!isEmpty(this._date)) {
 			date = this._date;	
@@ -72,7 +71,7 @@ function jnDayObj(id) {
 	}
 	
 	// Get the day of the week
-	var getDayOfTheWeek = function() {
+	this.getDayOfTheWeek = function() {
 		var dayOfTheWeek = {};
 		if (!isEmpty(this._dayOfTheWeek)) {
 			dayOfTheWeek = this._dayOfTheWeek;
@@ -82,7 +81,7 @@ function jnDayObj(id) {
 	}
 	
 	// Get the begin time of the day
-	var getBeginTime = function() {
+	this.getBeginTime = function() {
 		var beginTime = {};
 		if (!isEmpty(this._beginTime)) {
 			beginTime = this._beginTime;
@@ -92,26 +91,27 @@ function jnDayObj(id) {
 	}
 
 	// Get the end time of the day
-	var getEndTime = function() {
+	this.getEndTime = function() {
 		var endTime = {};
 		if (!isEmpty(this._endTime)) {
 			endTime = this._endTime;
 		}
 		
-		return this._endTime;
+		return endTime;
 	}
 	
 	// Get the number of activities in the day
-	var getNumActivities = function() {
+	this.getNumActivities = function() {
 		var numActivities = {};
 		if (!isEmpty(this._numActivities)) {
 			numActivities = this._numActivities;
 		}
+		return numActivities;
 	}
 	
 	// Get the activity indexed by activity num from the 
 	// _activities array
-	var getActivity = function(activityNum) {
+	this.getActivity = function(activityNum) {
 		var activityObj = {};
 		if (!isEmpty(this._activities)) {
 			if (this._activities.length > activityNum) {
@@ -123,13 +123,15 @@ function jnDayObj(id) {
 	}
 }
 
+//******************************************************************************
 // The activity object
+//******************************************************************************
 function jnActivityObj(id)
 {
 	this._id = id;
 	
 	// Get the name of the activity
-	var getName = function() {
+	this.getName = function() {
 		var name = "";
 		if (!isEmpty(this._name)) {
 			name = this._name;
@@ -138,7 +140,7 @@ function jnActivityObj(id)
 	}
 	
 	// Get the type of the activity
-	var getType = function() {
+	this.getType = function() {
 		var type = "";
 		if (!isEmpty(this._type)) {
 			type = this._type;
@@ -147,7 +149,7 @@ function jnActivityObj(id)
 	}
 	
 	// Get the begin time of the activity
-	var getBeginTime = function() {
+	this.getBeginTime = function() {
 		var beginTime = {};
 		if (!isEmpty(this._beginTime)) {
 			beginTime = this._beginTime;
@@ -156,16 +158,16 @@ function jnActivityObj(id)
 	}
 	
 	// Get the end time of the activity
-	var getEndTime = function() {
+	this.getEndTime = function() {
 		var endTime = {};
-		if (!isEmpty(this._beginTime)) {
-			beginTime = this._beginTime;
+		if (!isEmpty(this._endTime)) {
+			endTime = this._endTime;
 		}
-		return beginTime;
+		return endTime;
 	}
 	
 	// Get the title of the activity
-	var getTitle = function() {
+	this.getTitle = function() {
 		var title = "";
 		if (!isEmpty(this._title)) {
 			title = this._title;
@@ -173,69 +175,8 @@ function jnActivityObj(id)
 	}
 }
 
-// Array of "UserName: [Itinerary ID1, Itinerary ID2]" strings
-var _jnAllParsedItineraryObjs = [];
-
 // ACCESSOR FUNCTIONS FOR CLIENTS
-//-----------------------------------------------------------------------------
-// AUTHOR: nakul
-// DATE  : 4/28/2019 
-// BRIEF : Returns the number of itineraries that have been analyzed 
-//         for the given user name
-//-----------------------------------------------------------------------------
-function jnParseGetNumItineraries(username) 
-{
-	var numObjs = -1;
-	for (usernameItObj in _jnAllParsedItineraryObjs) {
-		var usernameFromObj = usernameItObj._username;
-		if (usernameFromObj == username) {
-			numObjs = usernameItObj._itineraries.length;
-			break;
-		}
-	}
-	
-	return numObjs;
-}
-
-//-----------------------------------------------------------------------------
-// AUTHOR: nakul
-// DATE  : 4/28/2019 
-// BRIEF : Get the i-th itinerary ID for the given user name
-//-----------------------------------------------------------------------------
-function jnParseGetItineraryForUserName(username, i) 
-{
-		
-}
-
 // PARSE FUNCTIONS
-//-----------------------------------------------------------------------------
-// AUTHOR: nakul
-// DATE  : 4/28/2019 
-// BRIEF : Adds a given itinerary for the username
-//-----------------------------------------------------------------------------
-function jnParseAddItineraryForUsername(username, itObj) 
-{
-	var addResult = false;
-	
-	var usernameFound = false;
-	for (usernameItObj in _jnAllParsedItineraryObjs) {
-		var usernameFromObj = usernameItObj._username;
-		if (usernameFromObj == username) {
-			usernameItObj._itineraries.push(itObj);
-			usernameFound = true;
-			break;
-		}
-	}
-	
-	if (usernameFound == false) {
-	   var itForUsernameObj = new jnItinerariesForUsernameObj(username);
-	   itForUserNameObj._itineraries.push(itObj);
-	   _jnAllParsedItineraryObjs.push(itForUserNameObj);
-	}
-	
-	return addResult;
-}
-
 //-----------------------------------------------------------------------------
 // AUTHOR: nakul
 // DATE  : 4/28/2019 
@@ -253,7 +194,7 @@ function jnParseDeleteActivityObj(activityObj)
 //-----------------------------------------------------------------------------
 function jnParseDeleteDayObj(dayObj) 
 {
-	if (typeof dayObj._activities === undefined) {
+	if (dayObj._activities === undefined) {
 		if (dayObj._activities.length > 0) {
 			for (jnActivityObj in dayObj._activities) {
 				jnParseDeleteActivityObj(jnActivityObj);
@@ -272,7 +213,7 @@ function jnParseDeleteDayObj(dayObj)
 //-----------------------------------------------------------------------------
 function jnParseDeleteItineraryObj(itObj) 
 {
-	if (typeof itObj._days === undefined) {
+	if (itObj._days === undefined) {
 		if (itObj._days.length > 0) {
 			for (jnDayObj in itObj._days) {
 				jnParseDeleteDayObj(jnDayObj);
@@ -310,6 +251,10 @@ function jnParseActivityParams(activityObj, key, value)
 	} else if (key == "ActivityEndTime") {
 		activityObj._endTime = value;
 	} else {
+		// ---------   BEGIN CONSOLE MESSAGE { ------------------------
+			consoleLog = "Error while parsing key: " + key + " in activity";
+			jnDebugConsoleLog(consoleLog);
+		// ----------  END CONSOLE MESSAGE   } ------------------------
 		parseResult = false;
 	}
 	
@@ -348,6 +293,10 @@ function jnParseDayParams(dayObj, key, value)
 	} else if (key == "NumberOfActivities") {
 		dayObj._numActivities = parseInt(value);
 	} else {
+		// ---------   BEGIN CONSOLE MESSAGE { ------------------------
+			consoleLog = "Error while parsing key: " + key + " in day object";
+			jnDebugConsoleLog(consoleLog);
+		// ----------  END CONSOLE MESSAGE   } ------------------------
 		parseResult = false;
 	}
 	
@@ -400,6 +349,7 @@ function jnParseActivityArray(dayObj, key, activityArray)
 		consoleLog = "Parsing activity array and details";
 		jnDebugConsoleLog(consoleLog);
 	// ----------  END CONSOLE MESSAGE   } ------------------------
+	
 	var activityIntId = 0;
 	var jnActivityArray = new Array();
 	
@@ -433,7 +383,7 @@ function jnParseActivityArray(dayObj, key, activityArray)
 		}
 		
 		if (parseResult == false) {
-			jnParseDeleteActivityObj(jnActivityObj);
+			jnParseDeleteActivityObj(jnActivity);
 			break;
 		}
 		jnActivityArray.push(jnActivity);
@@ -441,19 +391,24 @@ function jnParseActivityArray(dayObj, key, activityArray)
 	}
 	
 	if (parseResult == true) {
-		if (typeof dayObj._activities === undefined) {
+		if (dayObj._activities === undefined) {
 			dayObj._activities = new Array();
 		}
-		for (jnActivity in jnActivityArray) {
-			dayObj._activities.push(jnActivity);
+		for (var i = 0; i < jnActivityArray.length; i++) {
+			var jnActivityObject = jnActivityArray[i];
+			dayObj._activities.push(jnActivityObject);
 		}
 	} else {
 		// Delete the jnActivityArray along with the objects
-		for (jnActivityObj in jnActivityArray) {
-			jnParseDeleteActivityObj(jnActivity);
+		for (var i = 0; i < _activities.length; i++) {
+			var jnActivityObject = jnActivityArray[i];
+			jnParseDeleteActivityObj(jnActivityObject);
 		}
 	}
+	
 	delete jnActivityArray;
+	
+	return parseResult;
 }
 
 //-----------------------------------------------------------------------------
@@ -497,7 +452,7 @@ function jnParseDayDetails(itObj, key, dayDetailsArray)
 			break;
 		}
 		dayIdInt++;
-		jnDayArray.push(jnDay);
+		jnDayArray.push(jnDayObject);
 	}
 	
 	// If the parse result is true add the collected days into the itObj's
@@ -506,11 +461,13 @@ function jnParseDayDetails(itObj, key, dayDetailsArray)
 		if (typeof itObj._days === 'undefined') {
 			itObj._days = new Array();
 		}
-		for (jnDayObject in jnDayArray) {
+		for (var i = 0; i < jnDayArray.length; i++) {
+			var jnDayObject = jnDayArray[i];
 			itObj._days.push(jnDayObject);
 		}
 	} else {
-		for (jnDayObject in jnDayArray) {
+		for (var i = 0; i < jnDayArray.length; i++) {
+			var jnDayObject = jnDayArray[i];
 			jnParseDeleteDayObj(jnDayObject);
 		}
 	}
@@ -561,39 +518,16 @@ function jnParseItineraryDetails(itObj, key, itDetailsObj)
 // DATE  : 4/28/2019 
 // BRIEF : Parse the top level itinerary object. 
 //-----------------------------------------------------------------------------
-function jnParseItineraryObj(username, itJSONObj)
+function jnParseItineraryObj(itJSONObj)
 {
-	//var rand = new Person('Rand McNally', 33, 'M');
-	//var id = 4;
-	//var jnIt = new jnItineraryObj1(id);
 	var consoleLog = "";
 	
-	// ---------   BEGIN CONSOLE MESSAGE { ------------------------
-		consoleLog = "Parsing JSON for user name: " + username;
-		jnDebugConsoleLog(consoleLog);
-	// ----------  END CONSOLE MESSAGE   } ------------------------
-	
-	// Get the number of itineraries for the current user name
-	var numItinerariesForUser = jnParseGetNumItineraries(username);
-	
-	// ---------   BEGIN CONSOLE MESSAGE { ------------------------
-		consoleLog = "Found " + numItinerariesForUser + " for user : " + username;
-		jnDebugConsoleLog(consoleLog);
-	// ----------  END CONSOLE MESSAGE   } ------------------------
-	
-	
-	// Do error checking of the JSON itObj
-	//var jsonObjError = jnParseCheckJSON(itJSONObj);
-	//if (jsonObjError == true) {
-	//	return 0;
-	//}
-		
 	// Create the itinerary object
-	var newItObj = new jnItineraryObj(numItinerariesForUser);
-	numItinerariesForUser = numItinerariesForUser + 1;
+	var newItObj = new jnItineraryObj(numParsedItineraries);
+	numParsedItineraries = numParsedItineraries + 1;
 	
 	// Collect parse result
-	var parseResult = false;
+	var parseResult = true;
 	
 	// Perform iteration of the itinerary object to collect first level details
 	for (key in itJSONObj) {	
@@ -631,11 +565,10 @@ function jnParseItineraryObj(username, itJSONObj)
 	}
 	
 	// Add the itinerary object for the username if parseResult is true
-	if (parseResult == true) {
-		jnParseAddItineraryForUsername(username, newItObj);
-	} else {
-		jnParseDeleteItineraryObj(newItObj);
+	if (parseResult == false) {
+		delete newItObj;
+		newItObj = {};
 	}
 	
-	return parseResult;
+	return newItObj;
 }
